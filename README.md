@@ -81,10 +81,10 @@ We can of course rewrite all the expressions above in terms of the local hash ra
                      (ht/diff)^k 
 P(k shares | h, t) = ----------- exp(-ht/diff).
                           k!
-
+```
 
 ## Reference tables of #shares probabilities as a function of the cumulative effort. The last column represents the 1st deviate probabilities, i.e. the probability of falling within 1 standard deviation of the mean number of shares as denoted by square brackets.
-
+```
 nbshares       0     1     2     3     4     5     6     7     8     9    10    11    12    13    14    15 
   effort                                                                                                   P([bulk])
      25%    [78%]  19%    2%                                                                                   78%
@@ -102,7 +102,7 @@ nbshares       0     1     2     3     4     5     6     7     8     9    10    
     900%                        1%    3%    6%   [9%   12%   13%   13%   12%   10%    7%]   5%    3%    2%     76%
    1000%                        1%    2%    4%   [6%    9%   11%   13%   13%   11%    9%    7%]   5%    3%     80%
 nbshares       0     1     2     3     4     5     6     7     8     9    10    11    12    13    14    15 
-
+```
 ## Approximate distribution of daily earnings in a PPLNS pool
 
 We have just shown how the number of shares mined within a given timeframe behaves as a Poisson random variable with rate parameter `f`, the miner's cumulative effort, that depends on the miner's local hash rate `h`, the timeframe `t`, and the share difficulty `d` (short for `diff` from here on). As we've mentioned several times the principle is exactly the same for the distribution of the number of blocks mined by a pool in a given timeframe. One only has to use instead the pool's hash rate `H`, some other timeframe `T` of interest, and the block difficulty `D`.
