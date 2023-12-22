@@ -144,14 +144,14 @@ We can therefore write
 E[exp(izBS/N)] = sum -- ------ T(k, f) T(k, F)
                  k=0  k!  N^k
 ```
-Here comes the hand-waving. When looking at the original expansion of the distribution of earnings, we see from the sum over `b`` and `s` of `bs/N` that the distribution will consist of one point mass at 0 whenever `b=0`, `s=0`, or both `b=s=0`, followed by a dust of point masses at non-zero rational numbers. Intuitively, as `b` and `s` increase, the relative distances between neighboring point masses within that dust tend to zero. The central limit theorem would therefore suggest a continuous limit exists and should converge to a continuous distribution with support over the positive real numbers, usually something like a log-normal or a gamma distribution. Those distribution do not give any weight to 0. We will therefore first isolate the 0 component as follows
+When looking at the original expansion of the distribution of earnings, we see from the sum over `b` and `s` of `bs/N` that the distribution will consist of one point mass at 0 whenever `b=0`, `s=0`, or both `b=s=0`, followed by a dust of point masses at non-zero rational numbers. Intuitively, as `b` and `s` increase, the relative distances between neighboring point masses within that dust tend to zero. The central limit theorem would therefore suggest a continuous limit exists and should converge to a continuous distribution with support over the positive real numbers, usually something like a log-normal or a gamma distribution. Those distribution do not give any weight to 0. We will therefore first isolate the 0 component as follows
 
 ```
-                               [       1     inf  1 (iz)^k                 ]
-E[exp(izBS/N)] = p0 + (1 - p0) [ 1 + ------  sum -- ------ T(k, f) T(k, F) ]
-                               [     1 - p0  k=1  k!  N^k                  ]
+                                /      1     inf  1 (iz)^k                \
+E[exp(izBS/N)] = p0 + (1 - p0) | 1 + ------  sum -- ------ T(k, f) T(k, F) |
+                                \    1 - p0  k=1  k!  N^k                 /
 ```
-where we find from the original expression for `P(r)` that
+where we find from the original expression for `P(r)` thatx
 ```
 p0 = exp(-f - F) + exp(-f)(1 - exp(-F)) + exp(-F)(1 - exp(-f)),
    = exp(-f - F)(exp(F) + exp(f) - 1).
@@ -175,8 +175,14 @@ mean = kA,
 stdev = sqrt(k)A.
 ```
 With this subterfuge in place, expand both the exact characteristic function and the characteristic function of the zero-inflated gamma distribution and match the first two non-central moments (the constant terms are trivially equal):
+```math
+kA = \frac{1}{1 - p_0} \frac{fF}{N}
+```
+```math
+k(1+k)A^2 = \frac{1}{1-p_0} \frac{f F(1 + f)(1 + F)}{N^2}
 ```
 
+<!-- ```
                 1    f F
          kA = ------ ---,
               1 - p0  N 
@@ -184,12 +190,12 @@ With this subterfuge in place, expand both the exact characteristic function and
                 1    fF(1 + f)(1 + F)
 k(1 + k)A^2 = ------ ----------------.
               1 - p0       N^2
-```
+``` -->
 Solve for `k` and `A` and find
 ```
-                                     f F                                 
-k = ---------------------------------------------------------------------,
-    (F + 1)(f + 1)(exp(-f-F) - exp(-F) - exp(-f)) + exp(f + F)(F + f + 1)
+                               f F                           
+k = ---------------------------------------------------------,
+    (F + 1)(f + 1)(exp(-f-F) - exp(-F) - exp(-f)) + F + f + 1
 
     F + f + 1    F f (exp(F) + exp(f) + 1)
 A = --------- - ---------------------------.
